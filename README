@@ -1,0 +1,50 @@
+NAME
+    RT-Extension-SelectBoxForwardFrom - Add Select Box to From Address for Forward Transaction
+
+DESCRIPTION
+    If you don't want to use a fixed Forward From Address
+
+RT VERSION
+    Works with RT
+
+INSTALLATION
+    perl Makefile.PL
+    make
+    make install
+        May need root permissions
+
+    Edit your /opt/rt4/etc/RT_SiteConfig.pm
+        If you are using RT 4.2 or greater, add this line:
+
+            Plugin('RT::Extension::SelectBoxForwardFrom');
+
+        For RT 4.0, add this line:
+
+            Set(@Plugins, qw(RT::Extension::SelectBoxForwardFrom));
+
+        or add RT::Extension::SelectBoxForwardFrom to your existing @Plugins
+        line.
+
+    Clear your mason cache
+            rm -rf /opt/rt4/var/mason_data/obj
+
+    Restart your webserver
+
+AUTHOR
+    Mark Hofstetter <mark@hofstetter.at>
+
+BUGS
+    All bugs should be reported via email to
+
+
+    or via the web at
+
+        L<rt.cpan.org|http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-SelectBoxForwardFrom>.
+
+LICENSE AND COPYRIGHT
+    This software is Copyright (c) 2017 by Mark Hofstetter
+
+    This is free software, licensed under:
+
+      The GNU General Public License, Version 2, June 1991
+
