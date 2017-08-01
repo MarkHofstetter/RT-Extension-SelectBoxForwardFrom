@@ -1,11 +1,15 @@
 NAME
-    RT-Extension-SelectBoxForwardFrom - Add Select Box to From Address for Forward Transaction
+    RT-Extension-SelectBoxForwardFrom - [One line description of module's
+    purpose here]
 
 DESCRIPTION
-    If you don't want to use a fixed Forward From Address
+    [Why would someone install this extension? What does it do? What problem
+    does it solve?]
 
 RT VERSION
-    Works with RT
+    Works with RT [What versions of RT is this known to work with?]
+
+    [Make sure to use requires_rt and rt_too_new in Makefile.PL]
 
 INSTALLATION
     perl Makefile.PL
@@ -31,13 +35,16 @@ INSTALLATION
     Restart your webserver
 
 AUTHOR
-    Mark Hofstetter <mark@hofstetter.at>
+    Best Practical Solutions, LLC <modules@bestpractical.com>
 
 BUGS
+    All bugs should be reported via email to
 
-    via the web at
+        L<bug-RT-Extension-SelectBoxForwardFrom@rt.cpan.org|mailto:bug-RT-Extension-SelectBoxForwardFrom@rt.cpan.org>
 
-        https://github.com/MarkHofstetter/RT-Extension-SelectBoxForwardFrom/issues
+    or via the web at
+
+        L<rt.cpan.org|http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-SelectBoxForwardFrom>.
 
 LICENSE AND COPYRIGHT
     This software is Copyright (c) 2017 by Mark Hofstetter

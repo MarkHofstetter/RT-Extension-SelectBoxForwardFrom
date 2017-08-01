@@ -490,9 +490,9 @@ realclean_subdirs :
 # Delete temporary files (via clean) and also delete dist files
 realclean purge ::  clean realclean_subdirs
 	- $(RM_F) \
-	  $(MAKEFILE_OLD) $(FIRST_MAKEFILE) 
+	  $(FIRST_MAKEFILE) $(MAKEFILE_OLD) 
 	- $(RM_RF) \
-	  $(DISTVNAME) MYMETA.yml 
+	  MYMETA.yml $(DISTVNAME) 
 
 
 # --- MakeMaker metafile section:
@@ -820,5 +820,5 @@ distsign ::
 
 install ::
 	$(NOECHO) $(PERL) -Ilib -I"/opt/rt4/local/lib" -I"/opt/rt4/lib" -Iinc -MModule::Install::RTx::Runtime -e"RTxPlugin()"
-	$(NOECHO) $(PERL) -MExtUtils::Install -e "install({q(lib), q($(DESTDIR)/opt/rt4/local/plugins/RT-Extension-SelectBoxForwardFrom/lib)})"
+	$(NOECHO) $(PERL) -MExtUtils::Install -e "install({q(html), q($(DESTDIR)/opt/rt4/local/plugins/RT-Extension-SelectBoxForwardFrom/html), q(lib), q($(DESTDIR)/opt/rt4/local/plugins/RT-Extension-SelectBoxForwardFrom/lib)})"
 

@@ -7,7 +7,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: '0'
 dynamic_config: 0
-generated_by: 'ExtUtils::MakeMaker version 7.0401, CPAN::Meta::Converter version 2.150001'
+generated_by: 'Module::Install version 1.18, CPAN::Meta::Converter version 2.150001'
 license: unknown
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -15,8 +15,13 @@ meta-spec:
 name: RT-Extension-SelectBoxForwardFrom
 no_index:
   directory:
-    - t
     - inc
 requires:
   perl: '5.008003'
+resources:
+  license: http://opensource.org/licenses/gpl-license.php
+  repository: https://github.com/bestpractical/rt-extension-selectboxforwardfrom
 version: '0.01'
+x_module_install_rtx_version: '0.39'
+x_requires_rt: 4.0.0
+x_rt_too_new: 4.4.0
