@@ -15,6 +15,7 @@ meta-spec:
 name: RT-Extension-SelectBoxForwardFrom
 no_index:
   directory:
+    - html
     - inc
 requires:
   perl: '5.008003'

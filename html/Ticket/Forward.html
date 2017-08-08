@@ -59,8 +59,13 @@ q
 
 <table border="0">
 <tr><td align="right"><&|/l&>From</&>:</td>
-<td><% $from %></td></tr>
-
+<td>
+<select name="From", id="SelectFrom">
+% foreach my $col (@froms) {
+<option <% $col ? 'selected="selected"' : '' |n %> value="<% $col %>"><% $col %></option>
+% }
+</select>
+</td></tr>
 <tr><td align="right"><&|/l&>Subject</&>:</td>
 <td><input name="Subject" size="60" value="<% $ARGS{'Subject'} || $subject %>" /></td></tr>
 
@@ -86,6 +91,7 @@ q
 
 <& /Elements/Submit, Label => loc('Forward Message and Return'), Name => 'ForwardAndReturn' &>
 <& /Elements/Submit, Label => loc('Forward Message'), Name => 'Forward' &>
+
 </form>
 <%INIT>
 my $TicketObj = LoadTicket($id);
@@ -119,8 +125,15 @@ my $Title = $txn
     ? loc('Forward transaction #[_1]', $txn->id)
     : loc('Forward ticket #[_1]', $TicketObj->id);
 
-my $from = RT::Interface::Email::GetForwardFrom(
-    $txn ? ( Transaction => $txn ) : ( Ticket => $TicketObj ) );
+
+# borrowed from  'sub GetForwardFrom' from lib/RT/Interface/Email.pm
+
+my $ticket = $TicketObj;
+my @froms = (
+    ( $txn || $ticket )->CurrentUser->EmailAddress,
+    $ticket->QueueObj->CorrespondAddress || RT->Config->Get('CorrespondAddress'),
+    $ticket->QueueObj->CommentAddress || RT->Config->Get('CommentAddress'),
+);
 
 my $subject = "Fwd: ".($txn || $TicketObj)->Subject;
 
@@ -135,7 +148,8 @@ my $attachments = RT::Interface::Email::GetForwardAttachments(
 
 <%ARGS>
 $id => undef
-$QuoteTransaction => undef
+$QuoteTransaction => 1,
 $ForwardAndReturn => 0,
 $Forward          => $ForwardAndReturn,
+# $SelectedFrom     => $from,
 </%ARGS>

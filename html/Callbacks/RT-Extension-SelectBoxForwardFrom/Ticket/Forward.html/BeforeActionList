@@ -1,0 +1,7 @@
+<%ARGS>
+$Ticket
+</%ARGS>
+<%INIT>
+# use RT::Extension::Addressbook;
+# my $addressbook = RT::Extension::Addressbook::get_addresses($Ticket);
+</%INIT>

@@ -180,7 +180,8 @@ C_FILES  =
 O_FILES  = 
 H_FILES  = 
 MAN1PODS = 
-MAN3PODS = lib/RT/Extension/SelectBoxForwardFrom.pm
+MAN3PODS = lib/RT/Extension/SelectBoxForwardFrom.pm \
+	lib/RT/Ticket_Vendor.pm
 
 # Where is the Config information that we are using/depend on
 CONFIGDEP = $(PERL_ARCHLIBDEP)$(DFSEP)Config.pm $(PERL_INCDEP)$(DFSEP)config.h
@@ -203,10 +204,13 @@ PERL_ARCHIVEDEP    =
 PERL_ARCHIVE_AFTER = 
 
 
-TO_INST_PM = lib/RT/Extension/SelectBoxForwardFrom.pm
+TO_INST_PM = lib/RT/Extension/SelectBoxForwardFrom.pm \
+	lib/RT/Ticket_Vendor.pm
 
 PM_TO_BLIB = lib/RT/Extension/SelectBoxForwardFrom.pm \
-	blib/lib/RT/Extension/SelectBoxForwardFrom.pm
+	blib/lib/RT/Extension/SelectBoxForwardFrom.pm \
+	lib/RT/Ticket_Vendor.pm \
+	blib/lib/RT/Ticket_Vendor.pm
 
 
 # --- MakeMaker platform_constants section:
@@ -430,9 +434,11 @@ POD2MAN = $(POD2MAN_EXE)
 
 
 manifypods : pure_all  \
-	lib/RT/Extension/SelectBoxForwardFrom.pm
+	lib/RT/Extension/SelectBoxForwardFrom.pm \
+	lib/RT/Ticket_Vendor.pm
 	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) -u \
-	  lib/RT/Extension/SelectBoxForwardFrom.pm $(INST_MAN3DIR)/RT::Extension::SelectBoxForwardFrom.$(MAN3EXT) 
+	  lib/RT/Extension/SelectBoxForwardFrom.pm $(INST_MAN3DIR)/RT::Extension::SelectBoxForwardFrom.$(MAN3EXT) \
+	  lib/RT/Ticket_Vendor.pm $(INST_MAN3DIR)/RT::Ticket_Vendor.$(MAN3EXT) 
 
 
 
@@ -490,7 +496,7 @@ realclean_subdirs :
 # Delete temporary files (via clean) and also delete dist files
 realclean purge ::  clean realclean_subdirs
 	- $(RM_F) \
-	  $(FIRST_MAKEFILE) $(MAKEFILE_OLD) 
+	  $(MAKEFILE_OLD) $(FIRST_MAKEFILE) 
 	- $(RM_RF) \
 	  MYMETA.yml $(DISTVNAME) 
 
@@ -787,7 +793,8 @@ ppd :
 
 pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
-	  lib/RT/Extension/SelectBoxForwardFrom.pm blib/lib/RT/Extension/SelectBoxForwardFrom.pm 
+	  lib/RT/Extension/SelectBoxForwardFrom.pm blib/lib/RT/Extension/SelectBoxForwardFrom.pm \
+	  lib/RT/Ticket_Vendor.pm blib/lib/RT/Ticket_Vendor.pm 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
 
